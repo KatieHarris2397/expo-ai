@@ -15,7 +15,7 @@
 
 ## Project Summary
 <!-- nexlayer:section agent-managed=project_summary -->
-An AI-powered demo using Expo Router with universal React Server Components (RSC) to stream native UI responses from an AI chat interface.
+An AI-powered demo using Expo Router with universal React Server Components to stream native UI components based on AI chat responses and tool calls.
 <!-- nexlayer:end -->
 
 ## Technology Stack
@@ -24,18 +24,18 @@ An AI-powered demo using Expo Router with universal React Server Components (RSC
 |------|------|---------|---------------|
 | Expo | framework | 54.0.27 | package.json |
 | React Native | framework | 0.81.5 | package.json |
-| AI SDK (Vercel) | ml | 3.4.33 | package.json |
-| Node.js | language | >=20 | package.json |
-| Tailwind CSS | tool | latest | tailwind.config.js |
+| Vercel AI SDK | ml | 3.4.33 | package.json |
+| Node.js | language | 22 | Dockerfile |
+| TypeScript | language | Not specified | tsconfig.json |
 <!-- nexlayer:end -->
 
 ## Repository Structure
 <!-- nexlayer:section agent-managed=structure_map -->
-- app/ — Expo Router file-based routing and RSC pages
-- components/ — Reusable UI components for native and web
-- util/ — Shared utility functions
-- assets/ — Static images and fonts
-- fixtures/ — Mock data for AI tool calls
+- app/ — Expo Router file-based routing and RSC components
+- components/ — Shared UI components
+- util/ — Helper functions and business logic
+- fixtures/ — Mock data for AI tool testing
+- public/ — Static assets
 <!-- nexlayer:end -->
 
 ## External Services Required
@@ -87,10 +87,10 @@ EXPO_PUBLIC_APPLE_MAPKIT_JS_KEY=***
 | `app` | `NODE_ENV` | `"production"` | plain |
 | `app` | `PORT` | `"8081"` | plain |
 | `app` | `HOSTNAME` | `"0.0.0.0"` | plain |
-| `app` | `OPENAI_API_KEY` | `"${OPENAI_API_KEY}"` | inter-pod |
 | `app` | `WEATHER_API_KEY` | `"${WEATHER_API_KEY}"` | inter-pod |
-| `app` | `TMDB_API_KEY` | `"${TMDB_API_KEY}"` | inter-pod |
+| `app` | `OPENAI_API_KEY` | `"${OPENAI_API_KEY}"` | inter-pod |
 | `app` | `TMDB_READ_ACCESS_TOKEN` | `"${TMDB_READ_ACCESS_TOKEN}"` | inter-pod |
+| `app` | `TMDB_API_KEY` | `"${TMDB_API_KEY}"` | inter-pod |
 | `app` | `GOOGLE_MAPS_API_KEY` | `"${GOOGLE_MAPS_API_KEY}"` | inter-pod |
 | `app` | `EXPO_PUBLIC_APPLE_MAPKIT_JS_KEY` | `${EXPO_PUBLIC_APPLE_MAPKIT_JS_KEY}` | inter-pod |
 
@@ -101,7 +101,7 @@ application:
   name: expo-ai
   pods:
     - name: app
-      image: "registry.nexlayer.io/user_01kna6j8vrcfj9q0wjtq5qsq3n/expo-ai:19f19038f16"
+      image: "registry.nexlayer.io/user_01kna6j8vrcfj9q0wjtq5qsq3n/expo-ai:9f1909c-fix1"
       path: /
       servicePorts:
         - 8081
@@ -109,14 +109,13 @@ application:
         NODE_ENV: "production"
         PORT: "8081"
         HOSTNAME: "0.0.0.0"
-        OPENAI_API_KEY: "${OPENAI_API_KEY}"
         WEATHER_API_KEY: "${WEATHER_API_KEY}"
-        TMDB_API_KEY: "${TMDB_API_KEY}"
+        OPENAI_API_KEY: "${OPENAI_API_KEY}"
         TMDB_READ_ACCESS_TOKEN: "${TMDB_READ_ACCESS_TOKEN}"
+        TMDB_API_KEY: "${TMDB_API_KEY}"
         GOOGLE_MAPS_API_KEY: "${GOOGLE_MAPS_API_KEY}"
         EXPO_PUBLIC_APPLE_MAPKIT_JS_KEY: ${EXPO_PUBLIC_APPLE_MAPKIT_JS_KEY}
 ```
-
 <!-- nexlayer:end -->
 
 ## Nexlayer Deployment Plan
@@ -142,17 +141,17 @@ application:
 
 ## Nexlayer Configuration
 <!-- nexlayer:section agent-managed=nexlayer_config -->
-**Last deployed:** 2026-06-30T14:54:11Z  
+**Last deployed:** 2026-06-30T15:03:04Z  
 **Live URL:** https://kitbear-studio-expo-ai.cloud.nexlayer.ai  
-**Runtime:** node · **Port:** 8081  
-**Deploy branch:** main  
+**Runtime:**  · **Port:** auto-detected  
+**Deploy branch:** nexlayer  
 
 ```yaml
 application:
   name: expo-ai
   pods:
     - name: app
-      image: "registry.nexlayer.io/user_01kna6j8vrcfj9q0wjtq5qsq3n/expo-ai:19f19038f16"
+      image: "registry.nexlayer.io/user_01kna6j8vrcfj9q0wjtq5qsq3n/expo-ai:9f1909c-fix1"
       path: /
       servicePorts:
         - 8081
@@ -160,10 +159,10 @@ application:
         NODE_ENV: "production"
         PORT: "8081"
         HOSTNAME: "0.0.0.0"
-        OPENAI_API_KEY: "${OPENAI_API_KEY}"
         WEATHER_API_KEY: "${WEATHER_API_KEY}"
-        TMDB_API_KEY: "${TMDB_API_KEY}"
+        OPENAI_API_KEY: "${OPENAI_API_KEY}"
         TMDB_READ_ACCESS_TOKEN: "${TMDB_READ_ACCESS_TOKEN}"
+        TMDB_API_KEY: "${TMDB_API_KEY}"
         GOOGLE_MAPS_API_KEY: "${GOOGLE_MAPS_API_KEY}"
         EXPO_PUBLIC_APPLE_MAPKIT_JS_KEY: ${EXPO_PUBLIC_APPLE_MAPKIT_JS_KEY}
 ```
@@ -173,6 +172,7 @@ application:
 <!-- nexlayer:section agent-managed=build_history -->
 | Date | Status | Notes |
 |------|--------|-------|
-| 2026-06-30T14:51:58Z | analyzed | initial repo analysis |
-| 2026-06-30T14:54:11Z | success | deployed https://kitbear-studio-expo-ai.cloud.nexlayer.ai |
+| 2026-06-30T14:58:48Z | analyzed | initial repo analysis |
+| 2026-06-30T15:03:04Z | success | deployed https://kitbear-studio-expo-ai.cloud.nexlayer.ai |
 <!-- nexlayer:end -->
+

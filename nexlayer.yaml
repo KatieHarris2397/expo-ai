@@ -2,7 +2,7 @@ application:
   name: expo-ai
   pods:
     - name: app
-      image: "registry.nexlayer.io/user_01kna6j8vrcfj9q0wjtq5qsq3n/expo-ai:19f19038f16"
+      image: "registry.nexlayer.io/user_01kna6j8vrcfj9q0wjtq5qsq3n/expo-ai:9f1909c-fix1"
       path: /
       servicePorts:
         - 8081
@@ -10,9 +10,9 @@ application:
         NODE_ENV: "production"
         PORT: "8081"
         HOSTNAME: "0.0.0.0"
-        OPENAI_API_KEY: "${OPENAI_API_KEY}"
         WEATHER_API_KEY: "${WEATHER_API_KEY}"
-        TMDB_API_KEY: "${TMDB_API_KEY}"
+        OPENAI_API_KEY: "${OPENAI_API_KEY}"
         TMDB_READ_ACCESS_TOKEN: "${TMDB_READ_ACCESS_TOKEN}"
+        TMDB_API_KEY: "${TMDB_API_KEY}"
         GOOGLE_MAPS_API_KEY: "${GOOGLE_MAPS_API_KEY}"
         EXPO_PUBLIC_APPLE_MAPKIT_JS_KEY: ${EXPO_PUBLIC_APPLE_MAPKIT_JS_KEY}
